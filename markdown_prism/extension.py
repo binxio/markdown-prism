@@ -35,7 +35,7 @@ class PrismBlockPreprocessor(markdown.preprocessors.Preprocessor):
 
                 block = self.BLOCK_WRAP.format(lang, self._escape(m.group('code')))
                 # placeholder 为位置替换标记，由系统自动替换
-                placeholder = self.markdown.htmlStash.store(block, safe=True)
+                placeholder = self.markdown.htmlStash.store(block)
                 text = '%s\n%s\n%s' % (text[:m.start()], placeholder, text[m.end():])
             else:
                 break
@@ -47,7 +47,7 @@ class PrismBlockPreprocessor(markdown.preprocessors.Preprocessor):
             if m:
                 content = m.group('code')
                 code = self.CODE_WRAP.format(content)
-                placeholder = self.markdown.htmlStash.store(code, safe=True)
+                placeholder = self.markdown.htmlStash.store(code)
                 text = '{0}\n{1}\n{2}'.format(text[:m.start()], placeholder, text[m.end():])
             else:
                 break
